@@ -189,10 +189,33 @@ export default function Chatbot() {
         )
       ) : null}
       {!modelReady && (
-        <div style={{ position: "fixed", bottom: 24, right: 24, zIndex: 10000 }}>
-          <div className="paper-card" style={{ padding: 16, borderRadius: 16, background: theme === "dark" ? "#23272f" : "#fff", color: theme === "dark" ? "#fff" : "#222", boxShadow: "0 2px 12px #0002" }}>
-            <b>El chat IA no está disponible.</b>
-            <div style={{ fontSize: "0.95rem", marginTop: 6 }}>Estamos cargando el modelo o hubo un error. Intenta más tarde.</div>
+        <div style={{ position: "fixed", bottom: 24, right: 24, zIndex: 10000, width: 370, maxWidth: "95vw" }}>
+          <div
+            className="paper-card"
+            style={{
+              boxShadow: "0 2px 12px #0002",
+              borderRadius: 16,
+              overflow: "hidden",
+              padding: 0,
+              background: theme === "dark" ? "#23272f" : "#fff"
+            }}
+          >
+            <div
+              className="paper"
+              style={{
+                padding: "18px 20px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                background: theme === "dark" ? "#23272f" : "#f5f5f5"
+              }}
+            >
+              <b style={{ color: theme === "dark" ? "#fff" : "#222", fontSize: "1.1rem" }}>El chat IA no está disponible.</b>
+              <div style={{ fontSize: "0.95rem", marginTop: 8, color: theme === "dark" ? "#bbb" : "#444", textAlign: "center" }}>
+                Estamos cargando el modelo o hubo un error.<br />Intenta más tarde.
+              </div>
+            </div>
           </div>
         </div>
       )}
