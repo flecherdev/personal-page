@@ -29,9 +29,10 @@ async function getPolicyMarkdown(lang: keyof typeof languageOptions) {
 export default async function CashflowPrivacyPage({
   searchParams
 }: {
-  searchParams?: { lang?: string };
+  searchParams: Promise<{ lang?: string }>;
 }) {
-  const langParam = (searchParams?.lang || "es") as keyof typeof languageOptions;
+  const params = await searchParams;
+  const langParam = (params?.lang || "es") as keyof typeof languageOptions;
   const lang = languageOptions[langParam] ? langParam : "es";
   const content = await getPolicyMarkdown(lang);
 
