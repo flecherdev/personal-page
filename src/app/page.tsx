@@ -1,4 +1,3 @@
-
 "use client";
 
 import ModeToggle from "../components/mode-toggle";
@@ -7,9 +6,65 @@ import { Button } from "../components/ui/button";
 import { Card, CardHeader, CardContent, CardTitle } from "../components/ui/card";
 
 import * as React from "react";
-import Chatbot from "../components/Chatbot";
+import {
+  Mail,
+  Linkedin,
+  Github,
+  Smartphone,
+  Globe,
+  Code2,
+  Database,
+  Server,
+  Apple,
+  Gamepad2,
+  ArrowRight,
+  ExternalLink,
+  Calendar,
+  MapPin
+} from "lucide-react";
 
-function useIsMobile(breakpoint = 700) {
+const cashflowScreenshots = [
+  "gastos.png",
+  "ingresos.png",
+  "estadistica-inicio.png",
+  "estadisticas-grafica.png",
+  "estadisticas-detalle.png",
+  "presupuesto.png",
+  "more-inicio.png",
+  "metas-ahorro.png",
+  "compartidos.png",
+  "ajustes.png",
+  "ajustes-moneda.png"
+];
+
+const skills = [
+  { name: "React", icon: Code2, color: "#61DAFB" },
+  { name: "Next.js", icon: Globe, color: "#000000" },
+  { name: "Node.js", icon: Server, color: "#339933" },
+  { name: "PostgreSQL", icon: Database, color: "#336791" },
+  { name: "iOS/Swift", icon: Apple, color: "#FA7343" },
+  { name: "TypeScript", icon: Code2, color: "#3178C6" },
+  { name: "Three.js", icon: Gamepad2, color: "#000000" },
+];
+
+const experience = [
+  {
+    role: "Full Stack Engineer",
+    company: "Freelance / Proyectos Personales",
+    period: "2022 - Actualidad",
+    location: "Remoto",
+    description: "Desarrollo de productos digitales end-to-end. Enfocado en crear herramientas simples que mejoren la vida diaria."
+  },
+];
+
+function formatScreenshotLabel(fileName: string) {
+  return fileName
+    .replace(/\.png$/i, "")
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (m) => m.toUpperCase());
+}
+
+function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = React.useState(false);
   React.useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < breakpoint);
@@ -23,230 +78,510 @@ function useIsMobile(breakpoint = 700) {
 function NavResponsive() {
   const [open, setOpen] = React.useState(false);
   const isMobile = useIsMobile();
+  const navItems = [
+    { href: "#about", label: "Sobre mí" },
+    { href: "#experience", label: "Experiencia" },
+    { href: "#skills", label: "Skills" },
+    { href: "#projects", label: "Proyectos" },
+  ];
+
   return (
-    <nav aria-label="Secciones principales" style={{ position: "relative" }}>
+    <nav aria-label="Secciones principales">
       {isMobile ? (
         <>
-          <Button onClick={() => setOpen((o) => !o)} aria-label="Abrir menú" style={{ marginRight: 8 }}>
-            <span role="img" aria-label="menu">☰</span>
+          <Button
+            onClick={() => setOpen((o) => !o)}
+            aria-label="Abrir menú"
+            style={{ padding: "8px 12px", display: "flex", alignItems: "center", gap: 6 }}
+          >
+            <span style={{ fontSize: "1.2rem" }}>☰</span>
+            <span>Menú</span>
           </Button>
           {open && (
-            <div className="paper-card" style={{ position: "absolute", left: 0, top: "110%", minWidth: 160, zIndex: 10 }}>
-              <a href="#about" className="paper-btn" style={{ display: "block", marginBottom: 4 }} onClick={() => setOpen(false)}>Quién soy</a>
-              <a href="#experience" className="paper-btn" style={{ display: "block", marginBottom: 4 }} onClick={() => setOpen(false)}>Trayectoria</a>
-              <a href="#education" className="paper-btn" style={{ display: "block" }} onClick={() => setOpen(false)}>Educación</a>
+            <div
+              className="paper-card"
+              style={{
+                position: "absolute",
+                left: 0,
+                top: "110%",
+                minWidth: 180,
+                zIndex: 100,
+                padding: "12px 0"
+              }}
+            >
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="paper-btn"
+                  style={{ display: "block", padding: "10px 16px", margin: 0 }}
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
           )}
         </>
       ) : (
-        <div className="paper-nav">
-          <a href="#about" className="paper-btn">Quién soy</a>
-          <a href="#experience" className="paper-btn">Trayectoria</a>
-          <a href="#education" className="paper-btn">Educación</a>
+        <div style={{ display: "flex", gap: 8 }}>
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href} className="paper-btn">
+              {item.label}
+            </a>
+          ))}
         </div>
       )}
     </nav>
   );
 }
 
+function SkillBadge({ name, icon: Icon, color }: { name: string; icon: React.ElementType; color: string }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "8px 14px",
+        background: "rgba(255,255,255,0.6)",
+        borderRadius: 8,
+        border: "1px solid #e5e7eb",
+        fontSize: "0.9rem",
+        fontWeight: 500,
+        color: "#374151"
+      }}
+    >
+      <Icon size={18} color={color} />
+      <span>{name}</span>
+    </div>
+  );
+}
 
 export default function Home() {
+  const isMobileValue = useIsMobile();
+
   return (
-    <div className="paper" style={{ background: "#f7f7f7", minHeight: "100vh" }}>
-      <header className="paper-header" style={{ position: "relative", borderBottom: "2px solid #e0e0e0", paddingBottom: 12 }}>
-        <div style={{ position: "absolute", top: 12, right: 16, zIndex: 1000 }}>
-          <ModeToggle />
-        </div>
-        <div className="flex-row flex-space-between flex-align-center" style={{ flexWrap: "wrap", gap: 12 }}>
-          <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
-            <div className="avatar-animate" style={{
-              width: "56px",
-              height: "56px",
-              minWidth: "48px",
-              minHeight: "48px",
-              borderRadius: "50%",
-              border: "2px solid #e0e0e0",
-              boxShadow: "0 2px 8px #ccc",
-              background: "#fff",
-              overflow: "hidden",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginRight: "12px"
-            }}>
-              <Image src="/avatar.jpeg" alt="Avatar" width={56} height={56} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+    <div className="paper" style={{ background: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)", minHeight: "100vh" }}>
+      {/* Header */}
+      <header
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
+          background: "rgba(255,255,255,0.85)",
+          backdropFilter: "blur(12px)",
+          borderBottom: "1px solid #e5e7eb",
+          padding: "16px 24px"
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 1100,
+            margin: "0 auto",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 12
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div
+              className="avatar-animate"
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: "50%",
+                border: "2px solid #e5e7eb",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                overflow: "hidden"
+              }}
+            >
+              <Image src="/avatar.jpeg" alt="Avatar" width={44} height={44} style={{ objectFit: "cover" }} />
             </div>
-            <div style={{ minWidth: 0 }}>
-              <h1 className="paper-title" style={{ fontSize: "clamp(1.3rem, 5vw, 2.2rem)", fontWeight: "bold", margin: 0 }}>Ezequiel</h1>
-              <p className="paper-subtitle" style={{ fontSize: "clamp(0.9rem, 3vw, 1.1rem)", color: "#666", margin: 0 }}>Frontend Engineer</p>
+            <div>
+              <h1 style={{ fontSize: "1.1rem", fontWeight: 700, margin: 0, color: "#111827" }}>Ezequiel Freire</h1>
+              <p style={{ fontSize: "0.8rem", color: "#6b7280", margin: 0 }}>Full Stack Engineer</p>
             </div>
           </div>
-          <div className="flex-row flex-align-center" style={{ gap: 16, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
             <NavResponsive />
+            <ModeToggle />
           </div>
         </div>
       </header>
 
-      <main className="paper-main" style={{ maxWidth: 900, margin: "0 auto", padding: "32px 16px" }}>
-        {/* Hero */}
-        <section className="paper-section" style={{ marginBottom: 32, display: "flex", flexWrap: "wrap", gap: 24, alignItems: "center" }}>
-          <div style={{ flex: "1 1 260px", minWidth: "220px" }}>
-            <h2 className="paper-title" style={{ fontSize: "clamp(1.1rem, 5vw, 2rem)", fontWeight: "bold", margin: 0 }}>Ezequiel Alejandro Freire</h2>
-            <p className="paper-subtitle" style={{ fontSize: "clamp(0.9rem, 3vw, 1.1rem)", color: "#444", margin: 0 }}>Full Stack Engineer (Node, MongoDB, PostgreSQL, Angular, React)</p>
-            <p className="paper-desc" style={{ marginTop: 16 }}>Hola, mi nombre es Ezequiel y concluí la carrera de Técnico Superior en Programación en la Universidad Tecnológica Nacional. Me describo como curioso: siempre estoy aprendiendo algo nuevo. Actualmente me centro en entornos web y mobile (Angular, React) y exploro el desarrollo de juegos 2D con Godot, pixel art y GDScript.</p>
-            <div className="flex-row" style={{ gap: 12, marginTop: 24, flexWrap: "wrap" }}>
-              <Button>
-                <span role="img" aria-label="email" style={{ marginRight: 6 }}>✉️</span>
-                <a href="mailto:ezequiel.a.freire@gmail.com" style={{ color: "inherit", textDecoration: "none" }}>Contactame</a>
-              </Button>
-              <a href="#experience" className="paper-btn" style={{ marginLeft: 8 }}>
-                <span role="img" aria-label="trayectoria" style={{ marginRight: 4 }}>🗂️</span>
-                Ver trayectoria
+      <main style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px" }}>
+        {/* Hero Section */}
+        <section
+          id="about"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: 40,
+            alignItems: "center",
+            marginBottom: 56
+          }}
+        >
+          <div style={{ order: isMobileValue ? 1 : 0 }}>
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                padding: "6px 12px",
+                background: "#EFF6FF",
+                borderRadius: 20,
+                fontSize: "0.85rem",
+                color: "#1D4ED8",
+                fontWeight: 500,
+                marginBottom: 16
+              }}
+            >
+              <span style={{ width: 8, height: 8, background: "#10B981", borderRadius: "50%" }}></span>
+              Disponible para proyectos
+            </div>
+            <h2
+              style={{
+                fontSize: "clamp(2rem, 5vw, 2.75rem)",
+                fontWeight: 800,
+                margin: "0 0 12px",
+                color: "#111827",
+                lineHeight: 1.2
+              }}
+            >
+              Construyo productos digitales{" "}
+              <span style={{ color: "#3B82F6" }}>end-to-end</span>
+            </h2>
+            <p
+              style={{
+                fontSize: "1.1rem",
+                color: "#4B5563",
+                lineHeight: 1.7,
+                marginBottom: 24
+              }}
+            >
+              Soy Ezequiel, full stack engineer con enfoque en crear productos personales simples y útiles.
+              Trabajo con tecnologías web y mobile, y me gusta cuidar cada detalle de la experiencia de usuario.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+              <a
+                href="mailto:ezequiel.a.freire@gmail.com"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "12px 24px",
+                  background: "#111827",
+                  color: "#fff",
+                  borderRadius: 10,
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  transition: "transform 0.2s, box-shadow 0.2s"
+                }}
+              >
+                <Mail size={18} />
+                Contactame
+              </a>
+              <a
+                href="#projects"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "12px 24px",
+                  background: "#fff",
+                  color: "#111827",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: 10,
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  transition: "transform 0.2s, box-shadow 0.2s"
+                }}
+              >
+                Ver proyectos
+                <ArrowRight size={18} />
               </a>
             </div>
           </div>
-          <div style={{ flex: "1 1 180px", minWidth: "160px", display: "flex", justifyContent: "center" }}>
-            <div className="paper-card" style={{ width: "min(220px, 60vw)", height: "min(220px, 60vw)", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid #e0e0e0", background: "#fff" }}>
-              <Image src="/avatar.jpeg" alt="Ezequiel" width={200} height={200} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+          <div style={{ display: "flex", justifyContent: "center", order: isMobileValue ? 0 : 1 }}>
+            <div
+              style={{
+                position: "relative",
+                width: 280,
+                height: 280,
+                borderRadius: "50%",
+                background: "linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)",
+                padding: 4
+              }}
+            >
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  background: "#fff"
+                }}
+              >
+                <Image
+                  src="/avatar.jpeg"
+                  alt="Ezequiel"
+                  width={280}
+                  height={280}
+                  style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                />
+              </div>
             </div>
           </div>
         </section>
-        <hr className="paper-hr" />
 
-        {/* About */}
-        <section id="about" className="paper-section" style={{ marginBottom: 32 }}>
-          <Card>
-            <CardHeader>
-              <CardTitle>Quién soy</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>
-                Desarrollador de software con experiencia en tecnologías web modernas, especializado en frontend y backend. Apasionado por la innovación, la automatización y la mejora continua de procesos digitales. Me centro en entornos web y mobile (Angular, React, Next.js, Node.js) y exploro el desarrollo de juegos 2D con Godot.
+        <hr style={{ border: "none", borderTop: "1px solid #e5e7eb", margin: "40px 0" }} />
+
+        {/* Experience Section */}
+        <section id="experience" style={{ marginBottom: 48 }}>
+          <h3 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: 24, color: "#111827" }}>
+            Experiencia
+          </h3>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            {experience.map((exp, idx) => (
+              <Card
+                key={idx}
+                style={{
+                  padding: 20,
+                  borderRadius: 12,
+                  border: "1px solid #e5e7eb",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.05)"
+                }}
+              >
+                <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
+                  <div>
+                    <h4 style={{ fontSize: "1.1rem", fontWeight: 600, margin: "0 0 4px", color: "#111827" }}>
+                      {exp.role}
+                    </h4>
+                    <p style={{ fontSize: "0.95rem", color: "#3B82F6", margin: 0, fontWeight: 500 }}>
+                      {exp.company}
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, color: "#6b7280", fontSize: "0.9rem" }}>
+                    <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                      <Calendar size={14} />
+                      {exp.period}
+                    </span>
+                    <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                      <MapPin size={14} />
+                      {exp.location}
+                    </span>
+                  </div>
+                </div>
+                <p style={{ fontSize: "0.95rem", color: "#4B5563", margin: 0, lineHeight: 1.6 }}>
+                  {exp.description}
+                </p>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <hr style={{ border: "none", borderTop: "1px solid #e5e7eb", margin: "40px 0" }} />
+
+        {/* Skills Section */}
+        <section id="skills" style={{ marginBottom: 48 }}>
+          <h3 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: 24, color: "#111827" }}>
+            Habilidades
+          </h3>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+            {skills.map((skill) => (
+              <SkillBadge key={skill.name} {...skill} />
+            ))}
+          </div>
+        </section>
+
+        <hr style={{ border: "none", borderTop: "1px solid #e5e7eb", margin: "40px 0" }} />
+
+        {/* Projects Section */}
+        <section id="projects" style={{ marginBottom: 48 }}>
+          <h3 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: 24, color: "#111827" }}>
+            Proyectos
+          </h3>
+          <Card
+            style={{
+              padding: 0,
+              borderRadius: 16,
+              overflow: "hidden",
+              border: "1px solid #e5e7eb",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.05)"
+            }}
+          >
+            <div style={{ padding: 24 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 16 }}>
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <h4 style={{ fontSize: "1.25rem", fontWeight: 700, margin: 0, color: "#111827" }}>
+                      Cash Flow
+                    </h4>
+                    <span
+                      style={{
+                        padding: "4px 10px",
+                        background: "#FEF3C7",
+                        color: "#D97706",
+                        borderRadius: 12,
+                        fontSize: "0.75rem",
+                        fontWeight: 600
+                      }}
+                    >
+                      En desarrollo
+                    </span>
+                  </div>
+                  <p style={{ fontSize: "0.95rem", color: "#6b7280", margin: "4px 0 0" }}>
+                    App de finanzas personales para iOS
+                  </p>
+                </div>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <span
+                    style={{
+                      padding: "6px 12px",
+                      background: "#F3F4F6",
+                      borderRadius: 6,
+                      fontSize: "0.85rem",
+                      color: "#374151",
+                      fontWeight: 500
+                    }}
+                  >
+                    <Smartphone size={14} style={{ marginRight: 4, verticalAlign: "middle" }} />
+                    iOS
+                  </span>
+                  <span
+                    style={{
+                      padding: "6px 12px",
+                      background: "#F3F4F6",
+                      borderRadius: 6,
+                      fontSize: "0.85rem",
+                      color: "#374151",
+                      fontWeight: 500
+                    }}
+                  >
+                    Swift
+                  </span>
+                </div>
+              </div>
+
+              <p style={{ fontSize: "0.95rem", color: "#4B5563", lineHeight: 1.6, marginBottom: 16 }}>
+                App de gestión de gastos e ingresos personales. Nació de la necesidad de tener una herramienta
+                simple y sin complejidades innecesarias. Enfoque en usabilidad y control financiero consciente.
               </p>
-            </CardContent>
+
+              <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
+                <a
+                  href="/privacy/cashflow"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
+                    padding: "8px 14px",
+                    background: "#EFF6FF",
+                    color: "#1D4ED8",
+                    borderRadius: 8,
+                    fontSize: "0.9rem",
+                    fontWeight: 500,
+                    textDecoration: "none"
+                  }}
+                >
+                  <ExternalLink size={16} />
+                  Política de privacidad
+                </a>
+              </div>
+
+              <div>
+                <p style={{ fontSize: "0.85rem", color: "#6b7280", marginBottom: 12, fontWeight: 500 }}>
+                  Capturas de pantalla
+                </p>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 16,
+                    overflowX: "auto",
+                    paddingBottom: 12,
+                    scrollSnapType: "x mandatory"
+                  }}
+                >
+                  {cashflowScreenshots.slice(0, 5).map((name) => (
+                    <div
+                      key={name}
+                      style={{
+                        minWidth: 180,
+                        borderRadius: 12,
+                        overflow: "hidden",
+                        border: "1px solid #e5e7eb",
+                        background: "#fff",
+                        scrollSnapAlign: "center"
+                      }}
+                    >
+                      <div style={{ padding: 10, background: "linear-gradient(180deg, #f8fafc 0%, #fff 100%)" }}>
+                        <Image
+                          src={`/assets/cashflow/screenshots/${encodeURIComponent(name)}`}
+                          alt={formatScreenshotLabel(name)}
+                          width={160}
+                          height={345}
+                          style={{ width: "100%", height: "auto", borderRadius: 8 }}
+                        />
+                      </div>
+                      <p style={{ padding: "8px 10px", fontSize: "0.75rem", color: "#6b7280", margin: 0 }}>
+                        {formatScreenshotLabel(name)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <p style={{ fontSize: "0.8rem", color: "#9CA3AF", marginTop: 8 }}>
+                  Deslizá horizontalmente para ver más →
+                </p>
+              </div>
+            </div>
           </Card>
         </section>
-        <hr className="paper-hr" />
 
-        {/* Experience */}
-        <section id="experience" className="paper-section" style={{ marginBottom: 32 }}>
-          <h3 className="paper-title" style={{ fontSize: "1.5rem", fontWeight: "bold" }}>Trayectoria profesional</h3>
-          <div className="flex-col" style={{ gap: 20 }}>
-            {/* Línea de tiempo profesional */}
-            <article className="paper-card" style={{ borderLeft: "4px solid #e0e0e0", paddingLeft: 16 }}>
-              <div className="flex-row flex-space-between">
-                <div>
-                  <h4 className="paper-card-title">jun. 2025 - Actualidad</h4>
-                  <b>Backend - NestJS (Banco Galicia) — Altas onboarding</b>
-                  <div className="paper-card-desc">NestJS, Jenkins</div>
-                </div>
-              </div>
-              <p className="paper-card-desc"><i>Trabajo en módulos de backend para procesos de onboarding y altas, integrando pipelines y herramientas CI/CD.</i></p>
-            </article>
-
-            <article className="paper-card" style={{ borderLeft: "4px solid #e0e0e0", paddingLeft: 16 }}>
-              <div className="flex-row flex-space-between">
-                <div>
-                  <h4 className="paper-card-title">jul. 2024 - jun. 2025</h4>
-                  <b>Frontend Developer — Banco Galicia (Haberes)</b>
-                  <div className="paper-card-desc">Next.js, NestJS</div>
-                </div>
-              </div>
-              <p className="paper-card-desc"><i>Desarrollo de interfaces y features del área de haberes, colaborando con equipos backend.</i></p>
-            </article>
-
-            <article className="paper-card" style={{ borderLeft: "4px solid #e0e0e0", paddingLeft: 16 }}>
-              <div className="flex-row flex-space-between">
-                <div>
-                  <h4 className="paper-card-title">feb. 2024 - abr. 2025</h4>
-                  <b>Backend - NestJS (Hacete Galicia)</b>
-                  <div className="paper-card-desc">NestJS, Next.js</div>
-                </div>
-              </div>
-              <p className="paper-card-desc"><i>Desarrollo backend complementando features para productos internos y onboarding.</i></p>
-            </article>
-
-            <article className="paper-card" style={{ borderLeft: "4px solid #e0e0e0", paddingLeft: 16 }}>
-              <div className="flex-row flex-space-between">
-                <div>
-                  <h4 className="paper-card-title">nov. 2021 - jul. 2022</h4>
-                  <b>Full Stack Developer Javascript — UNX Digital</b>
-                  <div className="paper-card-desc">React, React Native, NestJS</div>
-                </div>
-              </div>
-              <p className="paper-card-desc"><i>Desarrollo y mantenimiento de productos web y mobile, backend con NestJS, metodologías ágiles (Scrum).</i></p>
-            </article>
-          </div>
-        </section>
-        <hr className="paper-hr" />
-
-        {/* Education */}
-        <section id="education" className="paper-section" style={{ marginBottom: 32 }}>
-          <h3 className="paper-title" style={{ fontSize: "1.5rem", fontWeight: "bold" }}>Educación</h3>
-          <div className="flex-row" style={{ gap: 20 }}>
-            <div className="paper-card" style={{ background: "#fff" }}>
-              <h4 className="paper-card-title">Técnico Superior en Programación</h4>
-              <p className="paper-card-desc">Universidad Tecnológica Nacional — 2018 — 2021</p>
-            </div>
-            <div className="paper-card" style={{ background: "#fff" }}>
-              <h4 className="paper-card-title">Certificación React Avanzado</h4>
-              <p className="paper-card-desc">Platzi — 2021</p>
-            </div>
-            <div className="paper-card" style={{ background: "#fff" }}>
-              <h4 className="paper-card-title">Cursos y workshops en tecnologías web</h4>
-              <p className="paper-card-desc">JavaScript, TypeScript, Next.js, Node.js</p>
-            </div>
-          </div>
-                {/* Skills */}
-                <section id="skills" className="paper-section" style={{ marginBottom: 32 }}>
-                  <h3 className="paper-title" style={{ fontSize: "1.5rem", fontWeight: "bold" }}>Habilidades</h3>
-                  <div className="flex-row" style={{ gap: 20, flexWrap: "wrap" }}>
-                    <div className="paper-card" style={{ background: "#fff", minWidth: 220 }}>
-                      <h4 className="paper-card-title">Lenguajes y frameworks</h4>
-                      <ul style={{ margin: 0, paddingLeft: 18 }}>
-                        <li>JavaScript, TypeScript</li>
-                        <li>React, Next.js, Angular</li>
-                        <li>Node.js, NestJS</li>
-                      </ul>
-                    </div>
-                    <div className="paper-card" style={{ background: "#fff", minWidth: 220 }}>
-                      <h4 className="paper-card-title">Otras habilidades</h4>
-                      <ul style={{ margin: 0, paddingLeft: 18 }}>
-                        <li>Diseño de interfaces, UX/UI</li>
-                        <li>Automatización de procesos</li>
-                        <li>Integración de APIs</li>
-                        <li>Testing y control de versiones (Git)</li>
-                      </ul>
-                    </div>
-                    <div className="paper-card" style={{ background: "#fff", minWidth: 220 }}>
-                      <h4 className="paper-card-title">Idiomas</h4>
-                      <ul style={{ margin: 0, paddingLeft: 18 }}>
-                        <li>Español (nativo)</li>
-                        <li>Inglés (intermedio)</li>
-                      </ul>
-                    </div>
-                  </div>
-                </section>
-        </section>
-        <hr className="paper-hr" />
+        <hr style={{ border: "none", borderTop: "1px solid #e5e7eb", margin: "40px 0" }} />
 
         {/* Footer */}
-        <footer className="paper-footer" style={{ textAlign: "center", marginTop: 32, padding: "24px 0", borderTop: "2px solid #e0e0e0", color: "#888" }}>
-          <div style={{ marginBottom: 8 }}>
-            <a href="mailto:ezequiel.a.freire@gmail.com" className="paper-btn" style={{ marginRight: 8 }} aria-label="Email">
-              <span role="img" aria-label="email">✉️</span> Email
+        <footer style={{ textAlign: "center", padding: "24px 0" }}>
+          <div style={{ display: "flex", justifyContent: "center", gap: 16, marginBottom: 16, flexWrap: "wrap" }}>
+            <a
+              href="mailto:ezequiel.a.freire@gmail.com"
+              className="paper-btn"
+              style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+              aria-label="Email"
+            >
+              <Mail size={16} />
+              Email
             </a>
-            <a href="https://www.linkedin.com/in/ezequiel-alejandro-freire-6a061152/" className="paper-btn" style={{ marginRight: 8 }} aria-label="LinkedIn" target="_blank" rel="noopener">
-              <span role="img" aria-label="linkedin">🔗</span> LinkedIn
+            <a
+              href="https://www.linkedin.com/in/ezequiel-alejandro-freire-6a061152/"
+              className="paper-btn"
+              style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={16} />
+              LinkedIn
             </a>
-            <a href="https://github.com/flecherdev" className="paper-btn" aria-label="GitHub" target="_blank" rel="noopener">
-              <span role="img" aria-label="github">🐙</span> GitHub
+            <a
+              href="https://github.com/flecherdev"
+              className="paper-btn"
+              style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <Github size={16} />
+              GitHub
             </a>
           </div>
-          <small>© {new Date().getFullYear()} Ezequiel Alejandro Freire. Todos los derechos reservados.</small>
+          <p style={{ fontSize: "0.9rem", color: "#9CA3AF", margin: 0 }}>
+            © {new Date().getFullYear()} Ezequiel Alejandro Freire
+          </p>
         </footer>
       </main>
-      <Chatbot />
     </div>
   );
 }
