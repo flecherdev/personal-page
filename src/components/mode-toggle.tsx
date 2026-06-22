@@ -13,7 +13,10 @@ const themes = [
 export default function ModeToggle() {
   const { theme, setTheme } = useTheme()
   const [open, setOpen] = React.useState(false)
+  const [mounted, setMounted] = React.useState(false)
   const ref = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => { setMounted(true) }, [])
 
   React.useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -32,7 +35,7 @@ export default function ModeToggle() {
         className="flex items-center gap-2 rounded-lg border border-border bg-surface-card px-3 py-2 text-sm text-content-muted transition-colors hover:bg-surface-secondary"
         aria-label="Cambiar tema"
       >
-        {currentIcon && <currentIcon.icon size={16} />}
+        {mounted && currentIcon ? <currentIcon.icon size={16} /> : <Sun size={16} />}
       </button>
       {open && (
         <div className="absolute right-0 top-[110%] min-w-[140px] z-50 rounded-lg border border-border bg-surface-card py-1 shadow-lg">
