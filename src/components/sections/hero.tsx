@@ -13,14 +13,16 @@ export default function Hero() {
           Disponible para proyectos
         </div>
         <h2 className="m-0 text-[clamp(2rem,5vw,2.75rem)] font-extrabold leading-tight text-content">
-          Construyo productos digitales{" "}
-          <span className="text-accent">end-to-end</span>
+          Arquitecto de{" "}
+          <span className="text-accent">Sistemas Autónomos</span>{" "}
+          e IA Generativa
         </h2>
         <p className="mb-6 mt-3 text-lg leading-relaxed text-content-secondary">
-          Soy Ezequiel, full stack engineer especializado en React, Node.js e
-          iOS. Hoy integro IA generativa en productos digitales — desde agents
-          y copilotos hasta orquestación de pipelines. Me gusta construir
-          herramientas simples que resuelvan problemas reales.
+          Full Stack Engineer con enfoque en Gen AI. Arquitecto de sistemas
+          autónomos, flujos inteligentes y platforms de onboarding bancario
+          con NestJS, Next.js y microservicios. Construyo productos digitales
+          end-to-end fusionando ingeniería tradicional con inteligencia
+          artificial.
         </p>
         <div className="flex flex-wrap gap-3">
           <a

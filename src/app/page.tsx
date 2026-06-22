@@ -10,13 +10,40 @@ import type { Project } from "../components/sections/projects-showcase"
 
 const experience: Experience[] = [
   {
-    role: "Full Stack Developer (NestJS) · Banco Galicia",
-    company: "Accenture",
-    period: "2024 - Actualidad",
-    location: "Híbrido",
+    role: "Fullstack · Altas Onboarding",
+    company: "Accenture — Banco Galicia",
+    period: "jun 2025 - Actualidad",
+    location: "Remoto",
     description:
-      "Desarrollo full stack para el banco en múltiples proyectos: onboarding digital (Altas), flujo de asociación (Hacete Galicia) y soluciones para CIO. Arquitectura basada en microservicios con NestJS, APIs REST e integración con sistemas legacy bancarios.",
-    technologies: ["NestJS", "TypeScript", "PostgreSQL", "MongoDB", "APIs REST", "Microservicios"],
+      "Desarrollo y despliegue del Back Office para la trazabilidad del onboarding de nuevos clientes. Arquitectura fullstack con NestJS, Next.js y MongoDB, integración con Jenkins para CI/CD.",
+    technologies: ["Next.js", "NestJS", "MongoDB", "Jenkins", "TypeScript"],
+  },
+  {
+    role: "Frontend Developer · Haberes",
+    company: "Accenture — Banco Galicia",
+    period: "jul 2024 - jun 2025",
+    location: "Remoto",
+    description:
+      "Desarrollo frontend para la gestión de haberes bancarios. Stack basado en Next.js con backend en NestJS.",
+    technologies: ["Next.js", "NestJS", "TypeScript"],
+  },
+  {
+    role: "Backend NestJS · Hacete Galicia",
+    company: "Accenture — Banco Galicia",
+    period: "feb 2024 - abr 2025",
+    location: "Remoto",
+    description:
+      "Desarrollo backend con NestJS para el flujo de asociación de nuevos clientes (Hacete Galicia). APIs REST, microservicios e integración con sistemas legacy bancarios.",
+    technologies: ["NestJS", "Next.js", "TypeScript", "APIs REST"],
+  },
+  {
+    role: "Full-stack Developer CIO",
+    company: "Accenture — Banco Galicia",
+    period: "ago 2022 - ene 2024",
+    location: "Argentina",
+    description:
+      "Desarrollo full stack dentro de la unidad CIO del banco. Construcción de soluciones internas con tecnologías modernas.",
+    technologies: ["NestJS", "Next.js", "TypeScript", "MongoDB"],
   },
   {
     role: "Full Stack Developer",
@@ -74,6 +101,7 @@ const skills: Skill[] = [
   { name: "React Native", icon: "Smartphone", category: "mobile" },
   { name: "Git", icon: "GitBranch", category: "tools" },
   { name: "Docker", icon: "Server", category: "tools" },
+  { name: "Jenkins", icon: "Server", category: "tools" },
 ]
 
 const projects: Project[] = [

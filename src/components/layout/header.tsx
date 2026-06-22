@@ -12,7 +12,7 @@ export default function Header() {
           </div>
           <div className="leading-tight">
             <h1 className="m-0 text-lg font-bold text-content">Ezequiel Freire</h1>
-            <p className="m-0 text-xs text-content-muted">Full Stack Engineer</p>
+            <p className="m-0 text-xs text-content-muted">Gen AI FullStack Engineer</p>
           </div>
         </div>
         <div className="flex items-center gap-4">
