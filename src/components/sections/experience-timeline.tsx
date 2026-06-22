@@ -16,7 +16,7 @@ export default function ExperienceTimeline({ items }: { items: Experience[] }) {
   return (
     <section id="experience" className="mb-12">
       <h3 className="mb-6 text-2xl font-bold text-content">Experiencia</h3>
-      <div className="relative flex flex-col gap-4 pl-8 before:absolute before:left-[11px] before:top-2 before:h-[calc(100%-24px)] before:w-0.5 before:bg-border">
+      <div className="relative flex flex-col gap-4 pl-8 before:absolute before:left-[15px] before:top-2 before:h-[calc(100%-24px)] before:w-0.5 before:bg-border">
         {items.map((exp, idx) => (
           <motion.div
             key={idx}

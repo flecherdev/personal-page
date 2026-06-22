@@ -11,6 +11,7 @@
   --color-content-muted: #6b7280;
   --color-border: #e5e7eb;
   --color-accent: #3b82f6;
+  --animate-avatar-bounce: avatar-bounce 1.2s cubic-bezier(.36,.07,.19,.97) both;
 }
 
 @variant dark {

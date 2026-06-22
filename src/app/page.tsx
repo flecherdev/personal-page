@@ -10,13 +10,13 @@ import type { Project } from "../components/sections/projects-showcase"
 
 const experience: Experience[] = [
   {
-    role: "Backend NestJS - Banco Galicia",
+    role: "Full Stack Developer (NestJS) · Banco Galicia",
     company: "Accenture",
     period: "2024 - Actualidad",
     location: "Híbrido",
     description:
-      "Desarrollo backend con NestJS para productos bancarios: onboarding digital y flujos de asociación (Hacete Galicia). Integración con sistemas legacy, APIs REST y microservicios en arquitectura cloud.",
-    technologies: ["NestJS", "TypeScript", "PostgreSQL", "MongoDB", "REST APIs"],
+      "Desarrollo full stack para el banco en múltiples proyectos: onboarding digital (Altas), flujo de asociación (Hacete Galicia) y soluciones para CIO. Arquitectura basada en microservicios con NestJS, APIs REST e integración con sistemas legacy bancarios.",
+    technologies: ["NestJS", "TypeScript", "PostgreSQL", "MongoDB", "APIs REST", "Microservicios"],
   },
   {
     role: "Full Stack Developer",
@@ -24,8 +24,8 @@ const experience: Experience[] = [
     period: "2022 - 2024",
     location: "Remoto",
     description:
-      "Desarrollo y mantenimiento de producto web y mobile full stack. Metodología ágil con Scrum y Jira. Manejo de repositorio Git/Bitbucket.",
-    technologies: ["React", "React Native", "NestJS", "TypeScript"],
+      "Desarrollo y mantenimiento de producto web y mobile full stack. Participación en todo el ciclo de vida del producto, desde requerimientos hasta deploy. Metodología ágil con Scrum y Jira.",
+    technologies: ["React", "React Native", "NestJS", "TypeScript", "Node.js"],
   },
   {
     role: "Full Stack Engineer",
@@ -33,7 +33,7 @@ const experience: Experience[] = [
     period: "2020 - 2022",
     location: "Remoto",
     description:
-      "Desarrollo y mantenimiento de app web y panel administrativo. Metodología ágil Scrum con ClickUp. Mantenimiento de repositorios GitHub.",
+      "Desarrollo y mantenimiento de app web y panel administrativo. Stack variado cubriendo frontend, backend y mobile con Flutter. Metodología ágil Scrum con ClickUp.",
     technologies: ["Node.js", "Express", "MongoDB", "Angular", "React", "Flutter"],
   },
   {
@@ -42,8 +42,8 @@ const experience: Experience[] = [
     period: "2019 - 2020",
     location: "Buenos Aires",
     description:
-      "Desarrollo y mantenimiento de SPA para ATM. Trabajo con Angular, Django y PWAs en entorno corporativo.",
-    technologies: ["Angular", "Django", "JavaScript", "PWA", "SQL"],
+      "Desarrollo y mantenimiento de aplicaciones web para ATM y soluciones corporativas. Trabajo con Angular, Django y PWAs en entorno de soporte técnico nivel 1 y gestión de incidencias.",
+    technologies: ["Angular", "Django", "JavaScript", "PWA", "SQL", "Scrum"],
   },
   {
     role: "Full Stack Engineer",
@@ -51,8 +51,8 @@ const experience: Experience[] = [
     period: "2018 - Actualidad",
     location: "Remoto",
     description:
-      "Desarrollo de productos digitales end-to-end. Enfocado en crear herramientas simples que mejoren la vida diaria, explorando iOS nativo e integraciones con IA.",
-    technologies: ["React", "Next.js", "iOS/Swift", "Node.js", "AI Agents"],
+      "Desarrollo de productos digitales end-to-end. Enfocado en crear herramientas simples que mejoren la vida diaria. Exploración activa de iOS nativo, integraciones con IA generativa, agents y copilotos.",
+    technologies: ["React", "Next.js", "iOS/Swift", "Node.js", "AI Agents", "RAG/LLM"],
   },
 ]
 
