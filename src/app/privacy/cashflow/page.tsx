@@ -68,26 +68,6 @@ export default async function CashflowPrivacyPage({
           </div>
         </div>
       </main>
-
-      <style>{`
-        .markdown h1 { font-size: 2rem; margin: 0 0 12px; color: var(--color-content); }
-        .markdown h2 { font-size: 1.5rem; margin: 24px 0 12px; color: var(--color-content); }
-        .markdown h3 { font-size: 1.2rem; margin: 20px 0 10px; color: var(--color-content); }
-        .markdown p { margin: 10px 0; color: var(--color-content-secondary); line-height: 1.7; }
-        .markdown ul, .markdown ol { margin: 10px 0 10px 20px; color: var(--color-content-secondary); }
-        .markdown li { margin: 4px 0; }
-        .markdown hr { margin: 24px 0; border: none; border-top: 1px solid var(--color-border); }
-        .markdown code { background: var(--color-surface-secondary); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; color: var(--color-content); }
-        .markdown pre { background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; }
-        .markdown pre code { background: none; padding: 0; color: inherit; }
-        .markdown a { color: var(--color-accent); text-decoration: underline; }
-        .markdown a:hover { opacity: 0.8; }
-        .markdown strong { font-weight: 600; color: var(--color-content); }
-        .markdown blockquote { border-left: 3px solid var(--color-accent); padding-left: 16px; margin: 16px 0; color: var(--color-content-secondary); }
-        .markdown table { width: 100%; border-collapse: collapse; margin: 16px 0; }
-        .markdown th, .markdown td { border: 1px solid var(--color-border); padding: 8px 12px; text-align: left; color: var(--color-content-secondary); }
-        .markdown th { background: var(--color-surface-secondary); font-weight: 600; color: var(--color-content); }
-      `}</style>
     </div>
   );
 }
