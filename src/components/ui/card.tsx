@@ -1,62 +1,19 @@
 import * as React from "react"
 
-
-
-
 function Card({ className = "", ...props }: React.ComponentProps<"div">) {
-  return (
-    <div className={`paper-card ${className}`.trim()} {...props} />
-  );
+  return <div className={`rounded-xl border border-border bg-surface-card ${className}`.trim()} {...props} />;
 }
-
 
 function CardHeader({ className = "", ...props }: React.ComponentProps<"div">) {
-  return (
-    <div className={`paper-card-header ${className}`.trim()} {...props} />
-  );
+  return <div className={`px-6 pt-6 ${className}`.trim()} {...props} />;
 }
 
-
-function CardTitle({ className = "", ...props }: React.ComponentProps<"div">) {
-  return (
-    <h3 className={`paper-card-title ${className}`.trim()} {...props} />
-  );
+function CardTitle({ className = "", ...props }: React.ComponentProps<"h3">) {
+  return <h3 className={`text-lg font-semibold text-content ${className}`.trim()} {...props} />;
 }
-
-
-function CardDescription({ className = "", ...props }: React.ComponentProps<"div">) {
-  return (
-    <p className={`paper-card-description ${className}`.trim()} {...props} />
-  );
-}
-
-
-function CardAction({ className = "", ...props }: React.ComponentProps<"div">) {
-  return (
-    <div className={`paper-card-action ${className}`.trim()} {...props} />
-  );
-}
-
 
 function CardContent({ className = "", ...props }: React.ComponentProps<"div">) {
-  return (
-    <div className={`paper-card-content ${className}`.trim()} {...props} />
-  );
+  return <div className={`px-6 pb-6 ${className}`.trim()} {...props} />;
 }
 
-
-function CardFooter({ className = "", ...props }: React.ComponentProps<"div">) {
-  return (
-    <div className={`paper-card-footer ${className}`.trim()} {...props} />
-  );
-}
-
-export {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardAction,
-  CardDescription,
-  CardContent,
-}
+export { Card, CardHeader, CardTitle, CardContent }

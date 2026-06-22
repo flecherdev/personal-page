@@ -20,14 +20,6 @@ export const metadata = {
   description: "Política de privacidad de la app Cash Flow."
 };
 
-const styles = {
-  page: { minHeight: "100vh" as const },
-  main: { maxWidth: 900, margin: "0 auto" as const, padding: "32px 16px" },
-  card: {},
-  langLabel: { color: "var(--text-muted, #666)", fontSize: "0.95rem" as const },
-  langBtn: { fontSize: "0.9rem" as const },
-};
-
 async function getPolicyMarkdown(lang: keyof typeof languageOptions) {
   const fileName = languageOptions[lang]?.file ?? languageOptions.es.file;
   const filePath = path.join(process.cwd(), "doc/cashflow-policy", fileName);
@@ -45,44 +37,37 @@ export default async function CashflowPrivacyPage({
   const content = await getPolicyMarkdown(lang);
 
   return (
-    <div className="paper" style={styles.page}>
-      <main className="paper-main" style={styles.main}>
-        <Link href="/" className="paper-btn" style={{ display: "inline-block", marginBottom: 16 }}>
+    <div className="min-h-screen bg-surface dark:bg-surface">
+      <main className="mx-auto max-w-[900px] px-4 py-8">
+        <Link
+          href="/"
+          className="mb-4 inline-block rounded-lg border border-border bg-surface-card px-4 py-2 text-sm text-content-secondary transition-colors hover:bg-surface-secondary"
+        >
           ← Volver al inicio
         </Link>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center", marginBottom: 12 }}>
-          <span style={styles.langLabel}>Idioma:</span>
+
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          <span className="text-sm text-content-muted">Idioma:</span>
           {Object.entries(languageOptions).map(([code, info]) => (
             <a
               key={code}
               href={`/privacy/cashflow?lang=${code}`}
-              className="paper-btn"
-              style={{ ...styles.langBtn, opacity: code === lang ? 0.8 : 1 }}
+              className={`inline-block rounded-lg border border-border px-3 py-1.5 text-sm text-content-secondary transition-colors hover:bg-surface-secondary ${
+                code === lang ? "opacity-80" : ""
+              }`}
               aria-current={code === lang ? "page" : undefined}
             >
               {info.label}
             </a>
           ))}
         </div>
-        <div className="paper-card" style={styles.card}>
-          <div className="markdown">
+
+        <div className="rounded-xl border border-border bg-surface-card p-6">
+          <div className="prose max-w-none">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
           </div>
         </div>
       </main>
-
-      <style>{`
-        .markdown h1 { font-size: 2rem; margin: 0 0 12px; }
-        .markdown h2 { font-size: 1.5rem; margin: 24px 0 12px; }
-        .markdown h3 { font-size: 1.2rem; margin: 20px 0 10px; }
-        .markdown p { margin: 10px 0; color: var(--text-secondary, #333); }
-        .markdown ul, .markdown ol { margin: 10px 0 10px 20px; }
-        .markdown hr { margin: 24px 0; border: none; border-top: 1px solid var(--border-color, #e5e7eb); }
-        .markdown code { background: var(--bg-secondary, #f3f4f6); padding: 2px 6px; border-radius: 4px; }
-        .markdown pre { background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; }
-        .markdown a { color: var(--accent-blue, #2563eb); text-decoration: underline; }
-        .markdown strong { font-weight: 600; }
-      `}</style>
     </div>
   );
 }

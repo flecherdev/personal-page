@@ -1,306 +1,40 @@
-@import "papercss/dist/paper.min.css";
+@import "tailwindcss";
 
-:root {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-card: #ffffff;
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-muted: #6b7280;
-  --border-color: #e5e7eb;
-  --accent-blue: #3b82f6;
-  --gradient-start: #f8fafc;
-  --gradient-end: #f1f5f9;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-surface: #f8fafc;
+  --color-surface-secondary: #f1f5f9;
+  --color-surface-card: #ffffff;
+  --color-content: #111827;
+  --color-content-secondary: #4b5563;
+  --color-content-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-accent: #3b82f6;
 }
 
-.dark {
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-card: #1e293b;
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --border-color: #334155;
-  --accent-blue: #60a5fa;
-  --gradient-start: #0f172a;
-  --gradient-end: #1e293b;
+@variant dark {
+  --color-surface: #0f172a;
+  --color-surface-secondary: #1e293b;
+  --color-surface-card: #1e293b;
+  --color-content: #f1f5f9;
+  --color-content-secondary: #cbd5e1;
+  --color-content-muted: #94a3b8;
+  --color-border: #334155;
+  --color-accent: #60a5fa;
 }
 
-.avatar-animate {
-	animation: avatarBounce 1.2s cubic-bezier(.36,.07,.19,.97) both;
+@keyframes avatar-bounce {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  60% { transform: scale(1.05); opacity: 1; }
+  80% { transform: scale(0.98); }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-@keyframes avatarBounce {
-	0% {
-		transform: scale(0.8);
-		opacity: 0.5;
-	}
-	60% {
-		transform: scale(1.05);
-		opacity: 1;
-	}
-	80% {
-		transform: scale(0.98);
-	}
-	100% {
-		transform: scale(1);
-		opacity: 1;
-	}
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-	width: 8px;
-	height: 8px;
-}
-
-::-webkit-scrollbar-track {
-	background: var(--bg-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-	background: #cbd5e1;
-	border-radius: 4px;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-	background: #475569;
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background: #94a3b8;
-}
-
-/* Dark mode base */
-body.dark {
-	background: var(--bg-primary) !important;
-	color: var(--text-primary);
-}
-
-.dark .paper {
-	background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%) !important;
-	color: var(--text-primary);
-}
-
-/* Header sticky - both light and dark */
-header[style*="position: sticky"] {
-	background: rgba(255,255,255,0.85);
-	backdrop-filter: blur(12px);
-	border-bottom: 1px solid var(--border-color);
-}
-
-.dark header[style*="position: sticky"] {
-	background: rgba(15, 23, 42, 0.95) !important;
-	border-bottom: 1px solid #334155 !important;
-}
-
-/* Header inner content */
-.dark header div[style*="maxWidth: 1100"] {
-	background: transparent !important;
-}
-
-/* Header title */
-.dark header h1 {
-	color: #f1f5f9 !important;
-}
-
-.dark header p {
-	color: #94a3b8 !important;
-}
-
-/* Header navigation buttons */
-.dark header nav a.paper-btn {
-	background: transparent !important;
-	color: #64748b !important;
-	border: none !important;
-}
-
-.dark header nav a.paper-btn:hover {
-	color: #f1f5f9 !important;
-	background: rgba(51, 65, 85, 0.5) !important;
-}
-
-/* Header mobile menu */
-.dark header .paper-card {
-	background: #1e293b !important;
-	border: 1px solid #334155 !important;
-}
-
-.dark header .paper-card a.paper-btn {
-	color: #e2e8f0 !important;
-}
-
-/* Header avatar */
-.dark header .avatar-animate {
-	border-color: #334155 !important;
-	box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
-}
-
-/* Section titles */
-.dark h2,
-.dark h3,
-.dark h4 {
-	color: var(--text-primary) !important;
-}
-
-.dark .paper-title {
-	color: var(--text-primary) !important;
-}
-
-/* Paragraphs and descriptions */
-.dark .paper-desc,
-.dark p,
-.dark .paper-card-desc {
-	color: var(--text-secondary) !important;
-}
-
-/* Cards */
-.dark .paper-card {
-	background: var(--bg-card) !important;
-	border-color: var(--border-color) !important;
-	color: var(--text-primary);
-}
-
-/* Card title and content */
-.dark .paper-card-title {
-	color: var(--text-primary) !important;
-}
-
-/* Buttons */
-.dark .paper-btn {
-	background: #334155 !important;
-	color: #e2e8f0 !important;
-	border-color: #475569 !important;
-}
-
-.dark .paper-btn:hover {
-	background: #475569 !important;
-}
-
-/* Horizontal rules */
-.dark .paper-hr {
-	border-color: var(--border-color) !important;
-}
-
-/* Links */
-.dark a:not(.paper-btn) {
-	color: var(--accent-blue) !important;
-}
-
-/* Hero section backgrounds */
-.dark section[id="about"] > div:first-child {
-	background: transparent !important;
-}
-
-.dark section[id="about"] > div:last-child {
-	background: transparent !important;
-}
-
-/* Experience section */
-.dark section[id="experience"] h3 {
-	color: var(--text-primary) !important;
-}
-
-/* Skills section */
-.dark section[id="skills"] h3 {
-	color: var(--text-primary) !important;
-}
-
-/* Skills badges */
-.dark div[style*="display: flex"][style*="gap: 12px"]:has(div[style*="border-radius: 8px"]) {
-	background: transparent !important;
-}
-
-.dark div[style*="display: flex"][style*="gap: 12px"] > div {
-	background: rgba(51, 65, 85, 0.8) !important;
-	border-color: #475569 !important;
-	color: #e2e8f0 !important;
-}
-
-/* Project section */
-.dark section[id="projects"] h3 {
-	color: var(--text-primary) !important;
-}
-
-/* Project card */
-.dark div[style*="border-radius: 16px"] {
-	background: var(--bg-card) !important;
-	border-color: var(--border-color) !important;
-}
-
-/* Project badges (iOS, Swift) */
-.dark div[style*="display: flex"][style*="gap: 8px"]:has(span[style*="border-radius: 6px"]) span {
-	background: #334155 !important;
-	color: #e2e8f0 !important;
-	border-color: #475569 !important;
-}
-
-/* Privacy link badge */
-.dark a[href*="privacy"] {
-	background: rgba(59, 130, 246, 0.15) !important;
-	color: #60a5fa !important;
-	border-color: transparent !important;
-}
-
-/* Footer */
-.dark .paper-footer {
-	background: transparent !important;
-	border: none !important;
-}
-
-/* Footer links */
-.dark footer a:not(.paper-btn) {
-	color: var(--text-muted) !important;
-}
-
-.dark footer a.paper-btn {
-	color: var(--text-secondary) !important;
-}
-
-/* Buttons in hero */
-.dark a[href*="mailto"] {
-	background: #1e293b !important;
-	color: #f1f5f9 !important;
-	border-color: #334155 !important;
-}
-
-.dark a[href*="mailto"]:hover {
-	background: #334155 !important;
-}
-
-.dark a[href="#projects"]:not([href*="mailto"]) {
-	background: var(--bg-card) !important;
-	color: var(--text-primary) !important;
-	border-color: var(--border-color) !important;
-}
-
-/* Caption text */
-.dark figcaption,
-.dark div[style*="font-size: 0.85rem"],
-.dark div[style*="font-size: 0.8rem"] {
-	color: var(--text-muted) !important;
-}
-
-/* Availability badge */
-.dark div[style*="background: #EFF6FF"] {
-	background: rgba(59, 130, 246, 0.15) !important;
-	color: #60a5fa !important;
-}
-
-/* Smooth transitions */
-* {
-	transition-property: background-color, border-color, color, fill, stroke;
-	transition-duration: 150ms;
-	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Remove transition on load for initial render */
-.paper * {
-	transition: none;
-}
-
-.paper:hover * {
-	transition-property: background-color, border-color, color, fill, stroke;
-	transition-duration: 150ms;
-	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+@layer base {
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--color-surface-secondary); }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  .dark ::-webkit-scrollbar-thumb { background: #475569; }
 }
